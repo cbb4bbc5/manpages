@@ -1,4 +1,4 @@
-.TH FILEBAK 1 2022-08-20 THEA Thea's\ Personal\ Manual
+.TH FILEBAK 1 2022-09-04 THEA Thea's\ Personal\ Manual
 
 .SH NAME
 filebak \- create a snapshot of the most recent changes to files
@@ -10,8 +10,40 @@ I have nothing to synops yet
 DESCRIPTION
 .\" I have no clue how the bolding below works, I saw it in some
 .\" other manpage
-Copy using \fBrsync\fR from predefined directories to encrypted
+Copy using \fBrsync (1)\fR from predefined directories to encrypted
 removable storage.
+
+As of now it assumes just basic luks2 encryption. For the simplicity
+of implementation any device to be used with \fBfilebak\fR should have
+its own entry in the \fBfstab (5)\fR and the drive should have labels.
+
+.SH USAGE
+When invoked without any arguments the script assumes default destination
+for the backup as samsung240gb USB drive. Exactly Four arguments can be 
+provided in the order specified below.
+.TP
+device_label
+this is the label of the encrypted drive that is to be opened. In current
+version the label of the encrypted drive and the filesystem that is in there.
+So when /dev/disk/by-label/device_label is used for the first time it points
+to the encrypted container but after opening it the symlink points to the
+filesystem in there. We can see this by running lsblk -o NAME,LABEL,MOUNTPOINT.
+
+.TP
+device_name
+the name for the \fBcryptsetup (1)\fR to open encrypted device under. It could
+be the same as the mountpoint specified in the \fBfstab (5)\fR file as it
+is used later as the destination of the backup.
+.TP
+backup_destination
+where to store the copy of the local files. As of now it has unchangeable prefix
+of /media/$USER/ but anything after can be set by passing the third argument of
+the script.
+.TP
+key_location
+where the keyfile that opens the encrypted drive is located. Currently it has
+unchangeable prefix of $HOME/Documents/pass. Otherwise a passphrase should be
+used.
 
 .SH EXIT STATUS
 .TP
