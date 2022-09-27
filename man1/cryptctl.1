@@ -1,0 +1,70 @@
+.TH CRYPTCTL 1 2022-09-27 THEA Thea's\ Personal\ Manual
+
+.SH NAME
+cryptctl \- an interface to open and mount or unmount and close
+encrypted drives
+
+.SH SYNOPSIS
+.B cryptctl
+[\fI\,OPTION\/\fR]... [\fI\,FILE\/\fR]...
+.br
+.B cryptctl \-o [\fI\,NAME\/\fR]... [\fI\,FILE\/\fR]...
+.br
+.B cryptctl \-c [\fI\,NAME\/\fR]...
+
+.SH
+DESCRIPTION
+.PP
+.B cryptctl
+is an abstraction around
+.B cryptsetup(1)
+to easily open and mount according to
+.B fstab(5)
+rules encrypted LUKS volumes. Similarly it provides the same functionality for
+unmounting and closing said volumes.
+.PP
+This is alpha quality software and alpha quality manual page.
+.TP
+\fB\-o\fR open the LUKS container and mount as specified in fstab
+.TP
+\fB\-m\fR mount in different place than fstab; must be combined with. To be implemented
+.TP
+\fB\-c\fR unmount and close the container; just unmounting not supported
+.TP
+\fB\-h\fR display this menu
+.TP
+\fB\-v\fR verbose flag; to be implemented, now it is on
+
+.SH EXAMPLES
+\". no idea how the formatting below works, taken from man manual page
+\". but it turns it is not useful for my use case I leave it here for
+\".reference
+.TP \w'cryptctl\ 'u
+\fBcryptctl \-o \fIname \fIkey_file \fR
+Open the LUKS container under
+.I name
+and use
+.I key_file
+to unlock it.
+.TP
+\fBcryptctl \-c \fIname \fR
+Close
+.IR name .
+
+.SH EXIT STATUS
+.TP
+0
+if everything succeeded,
+.TP
+1
+if some operation failed.
+
+.SH AUTHOR
+Written by Thea.
+
+.SH COPYRIGHT
+Copyright \(co Thea.
+Licence GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.
+
+.SH SEE ALSO
+\fBcryptsetup(1)\fP
