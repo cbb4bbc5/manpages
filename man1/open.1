@@ -1,0 +1,60 @@
+.TH OPEN 1 2022-12-24 THEA Thea's\ Personal\ Manual
+
+.SH NAME
+open \- open a given file with a specified based on the extension.
+
+.SH DESCRIPTION
+.B open
+opens a file given it as a first (and only) argument with one of the hardcoded
+programs based on its extension.
+
+.PP
+Future releases will try to guess the filetype based on the file contents or
+metadata or other available information if the file name does not contain a
+proper extension (or it has no extension at all). Appropriate behaviours in case
+of errors will also be added as well as support for more extensions and file
+types.
+
+.PP
+This is alpha quality software and alpha quality manual page. Features might get
+added or deleted or the entires script might be replaced by something else.
+
+.SH EXAMPLES
+
+.TP
+\fBopen\fP file.pdf
+Open file.pdf in \fBzathura(1)\fP.
+
+.TP
+\fBopen\fP file.md
+Open file.md by connecting to \fBemacsclient(1)\fP or if it is not running spawn
+\fBalacritty(1)\fP or \fPxterm(1)\fP if launching the former failed with file
+opened in \fBneovim(1)\fP.
+
+.TP
+\fBopen\fP file.mp4
+Open file.mp4 in \fBmpv(1)\fP.
+
+.TP
+\fBopen\fP file.mp3
+Just like above.
+
+.TP
+\fBopen\fP file
+When the supplied file name has no extension, program exits.
+Script behaves identically if the extension is not supported or if its
+extraction by shell parameter expansion failed (i.e. too many dots at the end of
+file like ...file).
+
+.SH EXIT STATUS
+Currently determined only by exit codes of external programs.
+
+.SH AUTHOR
+Written by Thea.
+
+.SH COPYRIGHT
+Copyright \(co Thea.
+Licence GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.
+
+.SH SEE ALSO
+\fBffile(1)\fP
