@@ -1,0 +1,37 @@
+.TH SETWALL 1 2022-12-25 THEA Thea's\ Personal\ Manual
+
+.SH NAME
+setwall \- set wallpaper for desktop.
+
+.SH DESCRIPTION
+\fBsetwall\fP relies on two environment variables: \fBXDG_WALLPAPERS_DIR\fP and
+\fBXDG_SHVARS_DIR\fP for creating the list of available choices of wallpapers
+and for storing that choice for future sessions.
+
+.PP
+The only thing left to add is the ability to set different wallpapers for
+multiple monitors. Also the speed at which the list of files is displayed could
+be improved but it is not terrible.
+
+.PP
+This is still alpha quality software and as such subject to change. The manual
+page might also see changes related to multi monitor changes if such feature is
+introduced.
+
+.SH EXIT STATUS
+.TP
+0
+if wallpaper was set successfully or a new wallpaper was not chosen.
+.TP
+1
+if wallpaper could not be set.
+
+.SH AUTHOR
+Written by Thea.
+
+.SH COPYRIGHT
+Copyright \(co Thea.
+Licence GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.
+
+.SH SEE ALSO
+\fBfeh(1)\fP, \fBdmenu(1)\fP, \fBxdg-user-dir(1)\fP
